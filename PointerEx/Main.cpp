@@ -3,24 +3,31 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]) {
+//Paste by value
+void val(int a) {
+	a = 2015;
+}
+
+//Paste by reference
+void ref(int &a) {
+	a = 2015;
+}
+
+/*
+void ref(int const &a) {
+	ERROR: a = 2015;
+}
+*/
+
+int main() {
 	
-	struct student {
-		string name;
-		int age;
-		string toString() {
-			return name + "-" + to_string(age);
-		}
-	};
+	int i = 10;
+	val(i);	
+	cout << "i is still: " << i << endl;
 
-	/*
-	argc: arguments count
-	if there is no argument, argc will return 1 because the first argument is reserved for command prompt.
-	*/
-	for (int i = 0; i < argc; i++) {
-		cout << "i[" << i << "]: "<< argv[i] << endl;
-	}
+	ref(i);
+	cout << "i is changed to: " << i << endl;
 
-	//Pause the commandline
-	system("pause>nul");
+	return 0;
+
 }
