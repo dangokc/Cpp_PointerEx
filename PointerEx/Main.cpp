@@ -5,36 +5,32 @@ using namespace std;
 
 int main() {
 	
-	int a1 = 0;
-	int a2 = 1;
+	const int SIZE_A = 6;
+	int a[SIZE_A];
+	cout << "a has: " << sizeof(a)/sizeof(*a) << " elements: " << endl;
 
-	/*
-	Init b as a regular pointer that point to an address.
-	so b can point to another address.
-	*/
-	int* b = &a1; // pointer only point to an address (illegal: int* b = a1)	
-	b = &a2; // b point to another address.
+	for (int i = 0; i < SIZE_A; i++) {
+		a[i] = i;
+		cout << "a[" << i << "] = " << i << endl;
+	}
 
-	/*
-	Init c as a const pointer that point to an address.
-	so c cannot point to another address.
-	*/
-	int* const c = &a1;	
-	//Error: c = &a2;
-	*c = 23;
+	int* b = a;
+	int* c = a + 2;
 
-	/*
-	Init d as a pointer that point to a const address.
-	so d cannot change the value of any address.
-	*/
-	const int* d = &a1;
-	d = &a2;
-	//Error: *d = 23;
+	cout << "\nb = a = " << *b << endl;
+	cout << "c = a+2 = " << *c << endl;
+
+	cout << "\nnow change value of b and c (*b = 100; *c = 500) " << endl;
+	*b = 100;
+	*c = 500;
+
+	for (int i = 0; i < SIZE_A; i++) {
+		cout << "a[" << i << "] = " << a[i] << endl;
+	}
 
 
 
-
-
+	
 
 
 
