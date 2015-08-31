@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
 	
 	struct student {
 		string name;
@@ -13,18 +13,12 @@ int main() {
 		}
 	};
 
-	student s1 = { "huy", 32 };
-
-	cout << "s1: " << s1.toString() << endl;
-
-	student arrayOfStudents[] = { 
-									{"John",20},
-									{ "Jim",21 },
-									{ "Jake",22 }
-	};
-
-	for (int i = 0; i < sizeof(arrayOfStudents) / sizeof(*arrayOfStudents); i++) {
-		cout << arrayOfStudents[i].toString() << endl;
+	/*
+	argc: arguments count
+	if there is no argument, argc will return 1 because the first argument is reserved for command prompt.
+	*/
+	for (int i = 0; i < argc; i++) {
+		cout << "i[" << i << "]: "<< argv[i] << endl;
 	}
 
 	//Pause the commandline
