@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//An example of "paste by value"
 void findAndReplace(string s1, string s2, string s3) {
 	//get length of string
 	size_t sizeOfs2 = s2.length();
@@ -22,25 +23,34 @@ void findAndReplace(string s1, string s2, string s3) {
 	cout << "New string: " << s1 << endl;	
 }
 
+//An example of "Paste by reference"
 void findAndRemove(string &s1, string s2) {
 	size_t index = s1.find(s2);
 	s1.erase(index, s2.length() + 1);
 	cout << "\nErased \"" << s2 << "\"" << endl;
 }
 
+void findAndSubStr(string s1, string s2) {
+	size_t index = s1.find(s2);
+	s1 = s1.substr(index, s2.length());
+	cout << "\nOriginal string is become: \"" << s1 << "\"" << endl;
+}
+
 
 int main() {
 	
 	string s1 = "Now is not the time";
-	cout << "Original string: " << s1 << endl;
-
-	//Paste by value
+	cout << "Note: Original string: " << s1 << endl;
+	
 	findAndReplace(s1, "is", "are");
+	cout << "Note: Original string still: " << s1 << endl;
 
-	//Paste by reference
 	findAndRemove(s1, "not");
+	cout << "Note: Original string now: " << s1 << endl;
 
-	cout << s1 << endl;
+	findAndSubStr(s1, "the time");
+	cout << "Note: Original string is: " << s1 << endl;
+
 	return 0;
 
 }
