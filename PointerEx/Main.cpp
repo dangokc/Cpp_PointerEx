@@ -3,31 +3,44 @@
 
 using namespace std;
 
-//Paste by value
-void val(int a) {
-	a = 2015;
+void findAndReplace(string s1, string s2, string s3) {
+	//get length of string
+	size_t sizeOfs2 = s2.length();
+
+	//find out the index of a string
+	size_t index = s1.find(s2);
+
+	//Replace at 'index', 'a lenght of string need to replace' with 'a new string'
+	s1.replace(index, sizeOfs2, s3);
+
+	/*
+	Since this method is pasted by value, so we can't change the value
+	of the original string because we need to keep the original
+	string for another work.
+	*/
+	cout << "\nReplaced \"" << s2 << "\" with \"" << s3 << "\""<< endl;
+	cout << "New string: " << s1 << endl;	
 }
 
-//Paste by reference
-void ref(int &a) {
-	a = 2015;
+void findAndRemove(string &s1, string s2) {
+	size_t index = s1.find(s2);
+	s1.erase(index, s2.length() + 1);
+	cout << "\nErased \"" << s2 << "\"" << endl;
 }
 
-/*
-void ref(int const &a) {
-	ERROR: a = 2015;
-}
-*/
 
 int main() {
 	
-	int i = 10;
-	val(i);	
-	cout << "i is still: " << i << endl;
+	string s1 = "Now is not the time";
+	cout << "Original string: " << s1 << endl;
 
-	ref(i);
-	cout << "i is changed to: " << i << endl;
+	//Paste by value
+	findAndReplace(s1, "is", "are");
 
+	//Paste by reference
+	findAndRemove(s1, "not");
+
+	cout << s1 << endl;
 	return 0;
 
 }
